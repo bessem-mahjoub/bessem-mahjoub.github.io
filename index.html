@@ -66,6 +66,7 @@ section{position:relative;z-index:1}
 .s-devops .sk-icon{background:rgba(251,146,60,0.12);color:var(--orange)}
 .s-ai .sk-icon{background:rgba(244,114,182,0.12);color:var(--pink)}
 .s-gov .sk-icon{background:rgba(74,222,128,0.12);color:var(--green)}
+.s-etl .sk-icon{background:rgba(251,191,36,0.12);color:#fbbf24}
 .sk-name{font-weight:600;font-size:0.95rem}
 .sk-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
 .tag{font-size:0.7rem;padding:0.22rem 0.6rem;border-radius:4px;font-weight:500;background:var(--bg4);border:1px solid var(--border);color:var(--text2);font-family:'JetBrains Mono',monospace}
@@ -91,6 +92,7 @@ section{position:relative;z-index:1}
 .chip.green{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.2);color:var(--green)}
 .chip.orange{background:rgba(251,146,60,0.1);border-color:rgba(251,146,60,0.2);color:var(--orange)}
 .chip.pink{background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.2);color:var(--pink)}
+.chip.yellow{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2);color:#fbbf24}
 #projects{padding:6rem 0}
 .proj-year-group{margin-bottom:4rem}
 .proj-year-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem}
@@ -180,6 +182,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="t-line">&nbsp;<span class="key">"stack"</span>: [<span class="str">"Azure"</span>, <span class="str">"Databricks"</span>,<span class="str">"Fabric"</span></div>
       <div class="t-line">&nbsp;&nbsp;&nbsp;<span class="str">"Snowflake"</span>, <span class="str">"dbt"</span>, <span class="str">"Spark"</span>],</div>
       <div class="t-line">&nbsp;<span class="key">"clouds"</span>: [<span class="str">"Azure"</span>, <span class="str">"AWS"</span>, <span class="str">"GCP"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"etl_tools"</span>: [<span class="str">"Talend"</span>, <span class="str">"dbt"</span>, <span class="str">"Glue"</span>],</div>
       <div class="t-line">&nbsp;<span class="key">"languages"</span>: [<span class="str">"Python"</span>, <span class="str">"SQL"</span>, <span class="str">"Scala"</span>],</div>
       <div class="t-line">&nbsp;<span class="key">"experiences"</span>: <span class="val">4</span>,</div>
       <div class="t-line"><span class="comment">}</span></div>
@@ -201,21 +204,25 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-database"></i></div><div class="sk-name">Data Engineering</div></div>
       <div class="sk-tags"><span class="tag">Python</span><span class="tag">PySpark</span><span class="tag">Spark</span><span class="tag">SQL</span><span class="tag">dbt</span><span class="tag">Snowflake</span><span class="tag">Databricks</span><span class="tag">Airflow</span><span class="tag">Kafka</span><span class="tag">Delta Lake</span><span class="tag">MongoDB</span><span class="tag">BigQuery</span><span class="tag">Power BI</span></div>
     </div>
-    <div class="skill-card s-cloud reveal reveal-d2">
+    <div class="skill-card s-etl reveal reveal-d2">
+      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-arrows-spin"></i></div><div class="sk-name">ETL & Data Visualisation</div></div>
+      <div class="sk-tags"><span class="tag">Talend</span><span class="tag">Talend Admin Center</span><span class="tag">dbt</span><span class="tag">AWS Glue</span><span class="tag">ADF</span><span class="tag">Power BI</span><span class="tag">Looker</span><span class="tag">Flask</span><span class="tag">Data Quality</span><span class="tag">Reporting</span></div>
+    </div>
+    <div class="skill-card s-cloud reveal reveal-d3">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-cloud"></i></div><div class="sk-name">Cloud</div></div>
       <div class="sk-tags"><span class="tag">Azure ADF</span><span class="tag">Databricks</span><span class="tag">Fabric</span><span class="tag">Synapse</span><span class="tag">DevOps</span><span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">Glue</span><span class="tag">Redshift</span><span class="tag">Step Functions</span><span class="tag">GCP BigQuery</span></div>
     </div>
-    <div class="skill-card s-devops reveal reveal-d3">
+    <div class="skill-card s-devops reveal reveal-d1">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-gears"></i></div><div class="sk-name">DevOps & CI/CD</div></div>
-      <div class="sk-tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">Linux/Shell</span><span class="tag">Git</span></div>
+      <div class="sk-tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">Linux/Shell</span><span class="tag">Git</span><span class="tag">Agile/Scrum</span></div>
     </div>
-    <div class="skill-card s-ai reveal reveal-d1">
+    <div class="skill-card s-ai reveal reveal-d2">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-brain"></i></div><div class="sk-name">IA & LLM</div></div>
-      <div class="sk-tags"><span class="tag">LangChain</span><span class="tag">GraphRAG</span><span class="tag">RAG</span><span class="tag">Neo4j</span><span class="tag">MLflow</span><span class="tag">Copilot Studio</span><span class="tag">Flink</span><span class="tag">Kubeflow</span></div>
+      <div class="sk-tags"><span class="tag">LangChain</span><span class="tag">GraphRAG</span><span class="tag">RAG</span><span class="tag">Neo4j</span><span class="tag">MLflow</span><span class="tag">Copilot Studio</span></div>
     </div>
-    <div class="skill-card s-gov reveal reveal-d2">
-      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="sk-name">Governance & Quality</div></div>
-      <div class="sk-tags"><span class="tag">Data Contracts</span><span class="tag">Unity Catalog</span><span class="tag">RBAC/RGPD</span><span class="tag">DuckDB</span><span class="tag">OpenTelemetry</span></div>
+    <div class="skill-card s-gov reveal reveal-d3">
+      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="sk-name">Gouvernance & Qualité</div></div>
+      <div class="sk-tags"><span class="tag">Data Contracts</span><span class="tag">Unity Catalog</span><span class="tag">RBAC/RGPD</span><span class="tag">DuckDB</span><span class="tag">OpenTelemetry</span><span class="tag">Architecture Medallion</span></div>
     </div>
   </div>
 </div>
@@ -240,7 +247,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
         <li>Orchestration <strong>Airflow</strong> et <strong>Azure Data Factory</strong> pour l'automatisation bout-en-bout des workflows data</li>
         <li>Conception de <strong>dashboards Power BI</strong> pour la visualisation des KPIs et des mesures de performance du site industriel</li>
         <li>Développement d'applications <strong>PowerApps</strong> de déclaration de pannes AGV et automatisation via <strong>Power Automate</strong> (génération PDF, envoi automatique)</li>
-        <li>Développement d'une plateforme web de centralisation des flux inter-services (<strong>Angular</strong> + <strong>C#/.NET</strong>) avec applications <strong>PowerApps</strong> et automatisation <strong>Power Automate</strong> (génération PDF, envoi automatique), déployée sur Azure</li>
         <li>CI/CD <strong>Azure DevOps</strong> / GitHub Actions et monitoring qualité des pipelines en production</li>
       </ul>
       <div class="exp-stack">
@@ -287,8 +293,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="exp-co"><i class="fa-solid fa-building"></i> Harington</div>
       <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Paris, France</div>
       <ul class="bullets">
-        <li>Conception d'une architecture <strong>microservices Java</strong> (API Gateway, Eureka, Spring Boot) pour une application web <strong>RH interne</strong> de gestion du cycle de vie des collaborateurs</li>
-        <li>Développement full-stack : front-end <strong>Angular</strong> (composants réutilisables, formulaires dynamiques, intégration API REST), back-end <strong>Spring Boot</strong>, base de données <strong>MongoDB</strong></li>
+        <li>Conception d'une architecture <strong>microservices Java</strong> (API Gateway, Eureka, Spring Boot) pour une application web <strong>RH interne</strong></li>
+        <li>Développement full-stack : front-end <strong>Angular</strong>, back-end <strong>Spring Boot</strong>, base de données <strong>MongoDB</strong></li>
         <li>Déploiement <strong>Docker/Kubernetes</strong> et automatisation CI/CD avec <strong>Jenkins</strong></li>
       </ul>
       <div class="exp-stack">
@@ -310,7 +316,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
   <div class="proj-year-group reveal">
     <div class="proj-year-label">2025</div>
     <div class="proj-cards">
-
       <div class="proj-card p1 wide">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
           <div>
@@ -320,12 +325,12 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
             </div>
             <div class="proj-title" style="margin-top:1rem">RAG Platform Industrielle</div>
             <div class="proj-sub">Saint-Gobain · Azure · Kafka · GraphRAG</div>
-            <div class="proj-desc" style="margin-top:0.75rem">Plateforme de données temps réel pour l'industrie du plâtre. Pipeline de streaming Kafka vers Delta Lake en architecture Medallion. Chatbot intelligent pour les techniciens de maintenance basé sur un Knowledge Graph Neo4j connecté à la documentation technique et à l'historique des pannes.</div>
+            <div class="proj-desc" style="margin-top:0.75rem">Plateforme de données temps réel pour l'industrie du plâtre. Pipeline de streaming Kafka vers Delta Lake en architecture Medallion. Chatbot intelligent pour les techniciens de maintenance basé sur un Knowledge Graph Neo4j.</div>
             <ul class="proj-bullets" style="margin-top:1rem">
               <li>Pipeline <strong>Kafka → Spark Structured Streaming → Delta Lake</strong> (Bronze/Silver/Gold)</li>
               <li>Chatbot <strong>GraphRAG + LangChain + Neo4j</strong> — doc technique + historique pannes</li>
               <li>Qualité & observabilité : <strong>Data Contracts</strong>, <strong>DuckDB</strong>, <strong>OpenTelemetry</strong></li>
-              <li>Déploiement <strong>Azure</strong> via Docker Compose — analyse comparative DWH → Lakehouse → Data Mesh</li>
+              <li>Déploiement <strong>Azure</strong> via Docker Compose</li>
             </ul>
           </div>
           <div>
@@ -346,14 +351,12 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
   <div class="proj-year-group reveal">
     <div class="proj-year-label">2024 — 2025</div>
     <div class="proj-cards">
-
       <div class="proj-card p2 reveal">
         <div class="proj-top">
           <div class="proj-icon-wrap">☁️</div>
@@ -365,8 +368,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
           <li>Ingestion multi-sources (API REST, CSV) vers <strong>Data Lake S3</strong> en architecture Medallion</li>
           <li>Orchestration event-driven <strong>AWS Lambda + Step Functions</strong></li>
           <li>Transformation <strong>AWS Glue (PySpark) + Databricks</strong> ; exposition <strong>Athena + Redshift</strong></li>
-          <li>Gouvernance <strong>IAM</strong>, monitoring <strong>CloudWatch</strong> et data quality checks en production</li>
-          <li>Catalogage et versioning des datasets comme <strong>data products</strong></li>
+          <li>Gouvernance <strong>IAM</strong>, monitoring <strong>CloudWatch</strong> et data quality checks</li>
         </ul>
         <div class="proj-arch" style="margin-top:0.75rem">
           <div><span class="node">API / CSV</span> <span class="arrow">──►</span> <span class="flow">S3 Medallion</span> <span class="arrow">──►</span> <span class="flow">Glue+Databricks</span></div>
@@ -378,29 +380,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
           <span class="chip purple">Databricks</span><span class="chip orange">Terraform</span><span class="chip green">CloudWatch</span>
         </div>
       </div>
-
-          <div class="exp-item reveal">
-      <div class="exp-node"></div>
-      <div class="exp-top">
-        <div class="exp-title">Stage — Full-Stack & DevOps</div>
-        <span class="exp-period">Juin → Août 2024</span>
-      </div>
-      <div class="exp-co"><i class="fa-solid fa-building"></i> Harington</div>
-      <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Tunis, Tunisie</div>
-      <ul class="bullets">
-        <li>Conception d'une architecture <strong>microservices Java</strong> (API Gateway, Eureka, Spring Boot) pour une application web <strong>RH interne</strong> de gestion du cycle de vie des collaborateurs</li>
-        <li>Développement full-stack : front-end <strong>Angular</strong> (composants réutilisables, formulaires dynamiques, intégration API REST), back-end <strong>Spring Boot</strong>, base de données <strong>MongoDB</strong></li>
-        <li>Déploiement <strong>Docker/Kubernetes</strong> et automatisation CI/CD avec <strong>Jenkins</strong></li>
-      </ul>
-      <div class="exp-stack">
-        <span class="chip green">Angular</span><span class="chip green">Spring Boot</span>
-        <span class="chip cyan">MongoDB</span>
-        <span class="chip orange">Docker/K8s</span><span class="chip orange">Jenkins</span>
-      </div>
-    </div>
-
-
-
     </div>
   </div>
 
