@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bessem Mahjoub — Junior Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#05050a;--bg2:#0d0d15;--bg3:#131320;--bg4:#1a1a2a;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+  --text:#e8e6ff;--text2:#8b89a8;--text3:#4a4866;
+  --purple:#7c6ff7;--purple2:#a78bfa;--cyan:#22d3ee;
+  --green:#4ade80;--orange:#fb923c;--pink:#f472b6;--red:#f87171;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--purple);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s;mix-blend-mode:screen}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(124,111,247,0.4);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.12s ease;mix-blend-mode:screen}
+
+/* GRID BG */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(124,111,247,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,247,0.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0
+}
+
+/* BLOBS */
+.blob{position:fixed;border-radius:50%;filter:blur(140px);opacity:0.08;pointer-events:none;z-index:0}
+.b1{width:700px;height:700px;background:var(--purple);top:-200px;left:-150px}
+.b2{width:500px;height:500px;background:var(--cyan);bottom:-150px;right:-100px}
+.b3{width:400px;height:400px;background:var(--pink);top:50%;left:40%;opacity:0.05}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 5%;
+  background:rgba(5,5,10,0.75);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border)
+}
+.logo{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.logo-bracket{color:var(--purple)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.82rem;color:var(--text2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-btn{font-size:0.82rem;padding:0.5rem 1.2rem;border:1px solid var(--purple);border-radius:6px;color:var(--purple);text-decoration:none;transition:all 0.2s;font-family:'Space Grotesk',sans-serif}
+.nav-btn:hover{background:var(--purple);color:#fff}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+.container{max-width:1080px;margin:0 auto;padding:0 5%}
+
+/* ──── HERO ──── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 0 4rem}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center}
+.hero-mono{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--purple);letter-spacing:0.1em;margin-bottom:1.2rem;opacity:0;animation:fadeUp 0.5s 0.1s ease forwards}
+.hero-name{font-size:clamp(3rem,5.5vw,5rem);font-weight:700;line-height:1.02;letter-spacing:-0.03em;margin-bottom:0.75rem;opacity:0;animation:fadeUp 0.5s 0.2s ease forwards}
+.hero-name .accent{background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-role{font-size:1.1rem;color:var(--text2);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.5s 0.3s ease forwards}
+.hero-role span{color:var(--cyan);font-weight:600}
+.hero-desc{font-size:0.92rem;color:var(--text2);line-height:1.85;margin-bottom:2rem;opacity:0;animation:fadeUp 0.5s 0.4s ease forwards}
+.hero-btns{display:flex;gap:1rem;opacity:0;animation:fadeUp 0.5s 0.5s ease forwards}
+.btn-p{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.6rem;background:var(--purple);color:#fff;text-decoration:none;border-radius:8px;font-size:0.88rem;font-weight:600;transition:all 0.2s}
+.btn-p:hover{background:var(--purple2);transform:translateY(-2px)}
+.btn-s{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.6rem;border:1px solid var(--border2);color:var(--text2);text-decoration:none;border-radius:8px;font-size:0.88rem;font-weight:500;transition:all 0.2s}
+.btn-s:hover{color:var(--text);border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
+
+/* TERMINAL CARD */
+.terminal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden;opacity:0;animation:fadeUp 0.6s 0.6s ease forwards}
+.terminal-bar{display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;background:var(--bg3);border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#f87171}.dot.y{background:#fbbf24}.dot.g{background:#4ade80}
+.terminal-title{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text3);margin-left:auto;margin-right:auto}
+.terminal-body{padding:1.25rem 1.5rem}
+.t-line{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--text2);line-height:2;display:flex;gap:0.5rem}
+.t-line .prompt{color:var(--green)}
+.t-line .cmd{color:var(--text)}
+.t-line .val{color:var(--cyan)}
+.t-line .str{color:var(--orange)}
+.t-line .key{color:var(--purple2)}
+.t-line .comment{color:var(--text3)}
+.avail{display:flex;align-items:center;gap:0.6rem;margin-top:1rem;padding:0.6rem 0.85rem;background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.18);border-radius:6px;font-size:0.78rem;font-family:'JetBrains Mono',monospace;color:var(--green)}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
+/* ──── SECTION HEADER ──── */
+.sec-header{margin-bottom:3rem}
+.sec-label{display:flex;align-items:center;gap:0.75rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--purple);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem}
+.sec-label::before{content:'//';color:var(--text3)}
+.sec-title{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;letter-spacing:-0.025em;line-height:1.15}
+
+/* ──── SKILLS ──── */
+#skills{padding:6rem 0}
+.skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all 0.3s;position:relative;overflow:hidden}
+.skill-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--card-glow,rgba(124,111,247,0.04)),transparent);pointer-events:none}
+.skill-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.skill-card.s-data{--card-glow:rgba(124,111,247,0.06)}
+.skill-card.s-cloud{--card-glow:rgba(34,211,238,0.06)}
+.skill-card.s-devops{--card-glow:rgba(251,146,60,0.06)}
+.skill-card.s-ai{--card-glow:rgba(244,114,182,0.06)}
+.skill-card.s-gov{--card-glow:rgba(74,222,128,0.06)}
+.sk-head{display:flex;align-items:center;gap:0.85rem;margin-bottom:1.25rem}
+.sk-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.s-data .sk-icon{background:rgba(124,111,247,0.12);color:var(--purple2)}
+.s-cloud .sk-icon{background:rgba(34,211,238,0.12);color:var(--cyan)}
+.s-devops .sk-icon{background:rgba(251,146,60,0.12);color:var(--orange)}
+.s-ai .sk-icon{background:rgba(244,114,182,0.12);color:var(--pink)}
+.s-gov .sk-icon{background:rgba(74,222,128,0.12);color:var(--green)}
+.sk-name{font-weight:600;font-size:0.95rem}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
+.tag{font-size:0.7rem;padding:0.22rem 0.6rem;border-radius:4px;font-weight:500;background:var(--bg4);border:1px solid var(--border);color:var(--text2);font-family:'JetBrains Mono',monospace}
+
+/* ──── EXPERIENCE ──── */
+#experience{padding:6rem 0}
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border2) 20%,var(--border2) 80%,transparent)}
+.exp-item{position:relative;padding:2.25rem 0 2.25rem 2.5rem;border-bottom:1px solid var(--border)}
+.exp-item:last-child{border-bottom:none}
+.exp-node{position:absolute;left:-5px;top:2.5rem;width:11px;height:11px;border-radius:50%;border:2px solid var(--purple);background:var(--bg)}
+.exp-node.active{background:var(--purple);box-shadow:0 0 12px var(--purple);animation:pulse 2s infinite}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.4rem;flex-wrap:wrap}
+.exp-title{font-size:1.05rem;font-weight:700}
+.exp-period{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text3);padding:0.2rem 0.7rem;border:1px solid var(--border);border-radius:100px;white-space:nowrap}
+.exp-co{font-size:0.85rem;color:var(--purple2);font-weight:600;margin-bottom:0.25rem}
+.exp-loc{font-size:0.78rem;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:0.4rem}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.bullets li{font-size:0.85rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.65}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--purple);font-size:0.7rem;top:0.22rem}
+.exp-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.1rem}
+.chip{font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:4px;font-weight:600;font-family:'JetBrains Mono',monospace;border:1px solid;cursor:default}
+.chip.purple{background:rgba(124,111,247,0.1);border-color:rgba(124,111,247,0.25);color:var(--purple2)}
+.chip.cyan{background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.2);color:var(--cyan)}
+.chip.green{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.2);color:var(--green)}
+.chip.orange{background:rgba(251,146,60,0.1);border-color:rgba(251,146,60,0.2);color:var(--orange)}
+.chip.pink{background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.2);color:var(--pink)}
+
+/* ──── PROJECTS ──── */
+#projects{padding:6rem 0}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;flex-direction:column;gap:1.1rem;transition:all 0.3s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--proj-color,var(--purple)),transparent);opacity:0;transition:opacity 0.3s}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-5px)}
+.proj-card:hover::before{opacity:1}
+.proj-card.feat{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;--proj-color:var(--purple)}
+.proj-card.p2{--proj-color:var(--cyan)}
+.proj-card.p3{--proj-color:var(--orange)}
+.proj-card.p4{--proj-color:var(--pink)}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between}
+.proj-icon-wrap{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:var(--bg3);border:1px solid var(--border);flex-shrink:0}
+.proj-links{display:flex;gap:0.5rem}
+.proj-link{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:6px;color:var(--text3);text-decoration:none;font-size:0.8rem;transition:all 0.2s}
+.proj-link:hover{color:var(--text);border-color:var(--border2)}
+.proj-title{font-size:1.05rem;font-weight:700;letter-spacing:-0.01em}
+.proj-sub{font-size:0.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:0.2rem}
+.proj-desc{font-size:0.84rem;color:var(--text2);line-height:1.8}
+.proj-bullets{list-style:none;display:flex;flex-direction:column;gap:0.45rem}
+.proj-bullets li{font-size:0.82rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.65}
+.proj-bullets li::before{content:'→';position:absolute;left:0;color:var(--proj-color,var(--purple));font-size:0.72rem;top:0.2rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:auto}
+.proj-arch{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.85rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text2);line-height:1.9;margin-top:0.5rem}
+.proj-arch .flow{color:var(--cyan)}.proj-arch .node{color:var(--purple2)}.proj-arch .arrow{color:var(--text3)}
+
+/* ──── CONTACT ──── */
+#contact{padding:6rem 0}
+.contact-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4rem;text-align:center;position:relative;overflow:hidden}
+.contact-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,rgba(124,111,247,0.07),transparent 60%);pointer-events:none}
+.contact-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.03em;margin-bottom:0.75rem;position:relative}
+.contact-sub{font-size:0.95rem;color:var(--text2);margin-bottom:2.5rem;position:relative}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative}
+.c-link{display:inline-flex;align-items:center;gap:0.6rem;padding:0.7rem 1.5rem;border:1px solid var(--border2);border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.85rem;font-weight:500;transition:all 0.25s}
+.c-link:hover{color:var(--text);border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
+.c-link.main{background:var(--purple);border-color:var(--purple);color:#fff}
+.c-link.main:hover{background:var(--purple2);border-color:var(--purple2)}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;font-size:0.78rem;color:var(--text3);position:relative;z-index:1;font-family:'JetBrains Mono',monospace}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
+
+@media(max-width:900px){
+  nav .nav-links{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .terminal{display:none}
+  .proj-card.feat{grid-column:span 1;grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span class="logo-bracket">[</span>BM<span class="logo-bracket">]</span></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:bassem.mahjoub13@gmail.com" class="nav-btn">Me contacter</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="container">
+<div class="hero-grid">
+  <div>
+    <div class="hero-mono">// bassem.mahjoub · Paris, France</div>
+    <h1 class="hero-name">Bessem<br><span class="accent">Mahjoub.</span></h1>
+    <p class="hero-role">Junior <span>Data Engineer</span> · Profil hybride Data + Cloud + DevOps</p>
+    <p class="hero-desc">Spécialisé Azure Databricks, Microsoft Fabric et Snowflake. Expérience end-to-end sur des pipelines industriels chez Saint-Gobain — de l'ingestion jusqu'à l'exposition des données. À l'aise sur toute la stack : ETL/ELT, orchestration, MLOps, IaC et CI/CD.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p"><i class="fa-solid fa-rocket"></i> Voir mes projets</a>
+      <a href="https://linkedin.com/in/bessem-mahjoub" target="_blank" class="btn-s"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="terminal-title">bessem.profile.json</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="prompt">$</span><span class="cmd">cat</span><span class="val">profile.json</span></div>
+      <div class="t-line"><span class="comment">{</span></div>
+      <div class="t-line">&nbsp;<span class="key">"role"</span>: <span class="str">"Junior Data Engineer"</span>,</div>
+      <div class="t-line">&nbsp;<span class="key">"location"</span>: <span class="str">"Paris, France"</span>,</div>
+      <div class="t-line">&nbsp;<span class="key">"stack"</span>: [<span class="str">"Azure"</span>, <span class="str">"Databricks"</span>,</div>
+      <div class="t-line">&nbsp;&nbsp;&nbsp;<span class="str">"Snowflake"</span>, <span class="str">"dbt"</span>, <span class="str">"Spark"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"clouds"</span>: [<span class="str">"Azure"</span>, <span class="str">"AWS"</span>, <span class="str">"GCP"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"languages"</span>: [<span class="str">"Python"</span>, <span class="str">"SQL"</span>,</div>
+      <div class="t-line">&nbsp;&nbsp;&nbsp;<span class="str">"Scala"</span>, <span class="str">"Java"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"experience"</span>: <span class="val">4</span>,</div>
+      <div class="t-line"><span class="comment">}</span></div>
+      <div class="avail"><div class="avail-dot"></div>available_for_cdi: true // nov 2026</div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-label">Stack technique</div>
+    <h2 class="sec-title">Compétences</h2>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-card s-data reveal reveal-d1">
+      <div class="sk-head">
+        <div class="sk-icon"><i class="fa-solid fa-database"></i></div>
+        <div class="sk-name">Data Engineering</div>
+      </div>
+      <div class="sk-tags">
+        <span class="tag">Python</span><span class="tag">PySpark</span><span class="tag">Spark</span>
+        <span class="tag">SQL</span><span class="tag">dbt</span><span class="tag">Snowflake</span>
+        <span class="tag">Databricks</span><span class="tag">Airflow</span><span class="tag">Kafka</span>
+        <span class="tag">Delta Lake</span><span class="tag">MongoDB</span><span class="tag">BigQuery</span><span class="tag">Power BI</span>
+      </div>
+    </div>
+    <div class="skill-card s-cloud reveal reveal-d2">
+      <div class="sk-head">
+        <div class="sk-icon"><i class="fa-solid fa-cloud"></i></div>
+        <div class="sk-name">Cloud</div>
+      </div>
+      <div class="sk-tags">
+        <span class="tag">Azure ADF</span><span class="tag">Databricks</span><span class="tag">Fabric</span>
+        <span class="tag">Synapse</span><span class="tag">DevOps</span>
+        <span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">Glue</span>
+        <span class="tag">Redshift</span><span class="tag">Step Functions</span>
+        <span class="tag">GCP BigQuery</span>
+      </div>
+    </div>
+    <div class="skill-card s-devops reveal reveal-d3">
+      <div class="sk-head">
+        <div class="sk-icon"><i class="fa-solid fa-gears"></i></div>
+        <div class="sk-name">DevOps & CI/CD</div>
+      </div>
+      <div class="sk-tags">
+        <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span>
+        <span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span>
+        <span class="tag">Jenkins</span><span class="tag">Azure DevOps</span>
+        <span class="tag">Linux/Shell</span><span class="tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-card s-ai reveal reveal-d1">
+      <div class="sk-head">
+        <div class="sk-icon"><i class="fa-solid fa-brain"></i></div>
+        <div class="sk-name">IA & LLM</div>
+      </div>
+      <div class="sk-tags">
+        <span class="tag">LangChain</span><span class="tag">GraphRAG</span><span class="tag">RAG</span>
+        <span class="tag">Neo4j</span><span class="tag">MLflow</span>
+        <span class="tag">Copilot Studio</span><span class="tag">Flink</span><span class="tag">Kubeflow</span>
+      </div>
+    </div>
+    <div class="skill-card s-gov reveal reveal-d2">
+      <div class="sk-head">
+        <div class="sk-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="sk-name">Governance & Quality</div>
+      </div>
+      <div class="sk-tags">
+        <span class="tag">Data Contracts</span><span class="tag">Unity Catalog</span>
+        <span class="tag">RBAC/RGPD</span><span class="tag">DuckDB</span><span class="tag">OpenTelemetry</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-label">Parcours</div>
+    <h2 class="sec-title">Expériences</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-node active"></div>
+      <div class="exp-top">
+        <div class="exp-title">Alternance — Data Engineering</div>
+        <span class="exp-period">Sept. 2025 → En cours</span>
+      </div>
+      <div class="exp-co"><i class="fa-solid fa-building"></i> Placoplatre, Saint-Gobain</div>
+      <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Vaujours, Île-de-France</div>
+      <ul class="bullets">
+        <li>Pipelines ETL/ELT (Python, SQL) sur <strong>Azure Databricks</strong> et <strong>Microsoft Fabric</strong> — fiabilisation de données industrielles hétérogènes</li>
+        <li>Architecture <strong>Medallion</strong> (Bronze/Silver/Gold) avec <strong>dbt</strong> et alimentation <strong>Snowflake</strong> via Microsoft Fabric</li>
+        <li>Jobs <strong>Spark/PySpark</strong> sur Azure Databricks pour le traitement distribué et <strong>MLOps</strong> (MLflow)</li>
+        <li>Orchestration <strong>Airflow</strong> et <strong>Azure Data Factory</strong> pour l'automatisation bout-en-bout des traitements</li>
+        <li>Développement d'une plateforme web de centralisation des flux inter-services — <strong>Angular</strong> (front) + <strong>C#/.NET</strong> (back) déployée sur Azure</li>
+        <li>Applications <strong>PowerApps</strong> de gestion des pannes AGV avec génération PDF et envoi automatique via <strong>Power Automate</strong></li>
+        <li>CI/CD <strong>Azure DevOps</strong> / GitHub Actions, dashboards <strong>Power BI</strong> et monitoring qualité en production</li>
+      </ul>
+      <div class="exp-stack">
+        <span class="chip purple">Azure Databricks</span><span class="chip purple">Microsoft Fabric</span>
+        <span class="chip purple">dbt</span><span class="chip purple">Snowflake</span>
+        <span class="chip cyan">Airflow</span><span class="chip cyan">ADF</span>
+        <span class="chip green">Angular</span><span class="chip green">C#/.NET</span>
+        <span class="chip orange">PowerApps</span><span class="chip orange">Power Automate</span>
+        <span class="chip pink">MLflow</span>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-node"></div>
+      <div class="exp-top">
+        <div class="exp-title">Stage — Ingénieur DevOps</div>
+        <span class="exp-period">Juin → Sept. 2025</span>
+      </div>
+      <div class="exp-co"><i class="fa-solid fa-building"></i> C.B.M</div>
+      <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Enghien-les-Bains</div>
+      <ul class="bullets">
+        <li>Infrastructure <strong>Data Lake scalable sur AWS S3</strong> avec IaC <strong>Terraform</strong> et traitement distribué <strong>Spark/PySpark</strong> + Java</li>
+        <li>Pipeline CI/CD <strong>GitLab CI</strong> pour l'industrialisation et l'automatisation des workflows data sur AWS</li>
+        <li>Orchestration <strong>Docker/Kubernetes</strong> pour le déploiement et la gestion des environnements data en production</li>
+      </ul>
+      <div class="exp-stack">
+        <span class="chip cyan">AWS S3</span><span class="chip cyan">Terraform</span>
+        <span class="chip purple">Spark/PySpark</span><span class="chip purple">Java</span>
+        <span class="chip green">Docker/K8s</span><span class="chip orange">GitLab CI</span>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-node"></div>
+      <div class="exp-top">
+        <div class="exp-title">Stage — Data Engineering</div>
+        <span class="exp-period">Juin → Sept. 2024</span>
+      </div>
+      <div class="exp-co"><i class="fa-solid fa-building"></i> Accodev</div>
+      <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Paris</div>
+      <ul class="bullets">
+        <li>Pipelines ETL/ELT (Python, SQL) sur sources hétérogènes <strong>(MongoDB, SQL)</strong> pour la structuration et fiabilisation de données clients</li>
+        <li>Jobs <strong>PySpark</strong> pour la transformation à grande échelle et l'automatisation des workflows data</li>
+        <li>CI/CD <strong>Azure DevOps</strong> avec monitoring continu des pipelines en production</li>
+      </ul>
+      <div class="exp-stack">
+        <span class="chip purple">Python</span><span class="chip purple">PySpark</span>
+        <span class="chip cyan">MongoDB</span><span class="chip cyan">SQL</span>
+        <span class="chip orange">Azure DevOps</span>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-node"></div>
+      <div class="exp-top">
+        <div class="exp-title">Stage — Full-Stack & DevOps</div>
+        <span class="exp-period">Juin → Août 2024</span>
+      </div>
+      <div class="exp-co"><i class="fa-solid fa-building"></i> Harington</div>
+      <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Tunis, Tunisie</div>
+      <ul class="bullets">
+        <li>Architecture <strong>microservices</strong> Java (API Gateway, Eureka, Spring Boot) pour une plateforme de ticketing et d'organisation d'événements universitaires</li>
+        <li>Développement full-stack : front-end <strong>Angular</strong>, back-end <strong>Spring Boot</strong>, base de données <strong>MongoDB</strong></li>
+        <li>Déploiement <strong>Docker/Kubernetes</strong> et automatisation CI/CD avec <strong>Jenkins</strong></li>
+      </ul>
+      <div class="exp-stack">
+        <span class="chip green">Angular</span><span class="chip green">Spring Boot</span>
+        <span class="chip cyan">MongoDB</span>
+        <span class="chip orange">Docker/K8s</span><span class="chip orange">Jenkins</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-label">Réalisations</div>
+    <h2 class="sec-title">Projets</h2>
+  </div>
+  <div class="proj-grid">
+
+    <!-- FEATURED -->
+    <div class="proj-card feat reveal">
+      <div>
+        <div class="proj-top">
+          <div class="proj-icon-wrap">🏭</div>
+          <div class="proj-links">
+            <a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="proj-title" style="margin-top:1rem">RAG Platform Industrielle</div>
+        <div class="proj-sub">Saint-Gobain · Azure · Streaming · LLM</div>
+        <div class="proj-desc" style="margin-top:0.75rem">
+          Plateforme de données temps réel pour l'industrie du plâtre. Pipeline de streaming Kafka → Spark → Delta Lake en architecture Medallion pour traiter les événements machine en temps réel. Chatbot industriel intelligent pour les techniciens de maintenance, capable d'interroger la documentation technique et l'historique des pannes.
+        </div>
+        <ul class="proj-bullets" style="margin-top:1rem">
+          <li>Pipeline streaming temps réel <strong>Kafka → Spark Structured Streaming → Delta Lake</strong> (Bronze/Silver/Gold)</li>
+          <li>Chatbot <strong>GraphRAG + LangChain + Neo4j</strong> — Knowledge Graph sur documentation technique et historique pannes</li>
+          <li>Qualité & observabilité : <strong>Data Contracts</strong>, <strong>DuckDB</strong> pour la validation, <strong>OpenTelemetry</strong> pour le tracing</li>
+          <li>Analyse comparative architectures : <strong>Data Warehouse → Lakehouse → Data Mesh</strong></li>
+        </ul>
+        <div class="proj-stack" style="margin-top:1.25rem">
+          <span class="chip purple">Kafka</span><span class="chip purple">Spark Streaming</span>
+          <span class="chip purple">Delta Lake</span><span class="chip pink">GraphRAG</span>
+          <span class="chip pink">LangChain</span><span class="chip pink">Neo4j</span>
+          <span class="chip cyan">Azure</span><span class="chip green">Docker Compose</span>
+          <span class="chip orange">DuckDB</span><span class="chip orange">OpenTelemetry</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-arch">
+          <div><span class="node">Kafka</span> <span class="arrow">──►</span> <span class="flow">Spark Streaming</span> <span class="arrow">──►</span> <span class="node">Delta Lake</span></div>
+          <div><span class="arrow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼</span></div>
+          <div><span class="node">Bronze</span> <span class="arrow">──►</span> <span class="node">Silver</span> <span class="arrow">──►</span> <span class="node">Gold</span></div>
+          <div style="margin-top:0.5rem"><span class="node">Neo4j KG</span> <span class="arrow">──►</span> <span class="flow">GraphRAG</span> <span class="arrow">──►</span> <span class="node">LangChain Bot</span></div>
+          <div style="margin-top:0.5rem"><span class="flow">Data Contracts</span> <span class="arrow">+</span> <span class="flow">OpenTelemetry</span> <span class="arrow">+</span> <span class="flow">DuckDB QA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card p2 reveal">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">☁️</div>
+        <div class="proj-links">
+          <a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="proj-title">Modern Data Platform — AWS Serverless</div>
+      <div class="proj-sub">AWS · Medallion · Terraform · Databricks</div>
+      <ul class="proj-bullets" style="margin-top:0.75rem">
+        <li>Ingestion multi-sources (API REST, CSV) vers <strong>Data Lake S3</strong> en architecture Medallion</li>
+        <li>Orchestration event-driven <strong>AWS Lambda + Step Functions</strong></li>
+        <li>Transformation <strong>AWS Glue (PySpark)</strong> + <strong>Databricks</strong> ; exposition <strong>Athena + Redshift</strong></li>
+        <li>Gouvernance <strong>IAM</strong>, monitoring <strong>CloudWatch</strong>, data quality checks en production</li>
+        <li>Catalogage et versioning des datasets comme <strong>data products</strong></li>
+      </ul>
+      <div class="proj-arch" style="margin-top:0.75rem">
+        <div><span class="node">API REST / CSV</span> <span class="arrow">──►</span> <span class="flow">S3 Bronze</span> <span class="arrow">──►</span> <span class="flow">Glue+Databricks</span></div>
+        <div><span class="arrow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼</span></div>
+        <div><span class="flow">S3 Gold</span> <span class="arrow">──►</span> <span class="node">Athena</span> <span class="arrow">+</span> <span class="node">Redshift</span></div>
+      </div>
+      <div class="proj-stack">
+        <span class="chip cyan">AWS S3</span><span class="chip cyan">Lambda</span>
+        <span class="chip cyan">Glue</span><span class="chip cyan">Redshift</span>
+        <span class="chip purple">Databricks</span><span class="chip orange">Terraform</span>
+        <span class="chip green">CloudWatch</span>
+      </div>
+    </div>
+
+    <div class="proj-card p3 reveal">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🎓</div>
+        <div class="proj-links">
+          <a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="proj-title">Plateforme Ticketing & Événements Universitaires</div>
+      <div class="proj-sub">Full-Stack · Microservices · Angular · Spring Boot</div>
+      <ul class="proj-bullets" style="margin-top:0.75rem">
+        <li>Architecture <strong>microservices Java</strong> : API Gateway, Service Discovery Eureka, Spring Boot</li>
+        <li>Front-end <strong>Angular</strong> : composants réutilisables, routing, formulaires réactifs, RxJS, intégration API REST</li>
+        <li>Back-end <strong>C#/.NET</strong> + <strong>Spring Boot</strong> : exposition des API REST consommées par Angular</li>
+        <li>Déploiement <strong>Docker/Kubernetes</strong> et CI/CD automatisé avec <strong>Jenkins</strong></li>
+      </ul>
+      <div class="proj-stack">
+        <span class="chip green">Angular</span><span class="chip green">TypeScript</span>
+        <span class="chip green">Spring Boot</span>
+        <span class="chip cyan">MongoDB</span>
+        <span class="chip orange">Docker/K8s</span><span class="chip orange">Jenkins</span>
+      </div>
+    </div>
+
+    <div class="proj-card p4 reveal">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">⚙️</div>
+        <div class="proj-links">
+          <a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="proj-title">Plateforme Centralisation Flux Inter-Services</div>
+      <div class="proj-sub">Saint-Gobain · Angular · C#/.NET · Azure · PowerApps</div>
+      <ul class="proj-bullets" style="margin-top:0.75rem">
+        <li>Application web <strong>Angular</strong> (composants réutilisables, RxJS, routing, design UI) + back-end <strong>C#/.NET</strong></li>
+        <li>Applications <strong>PowerApps</strong> de déclaration de pannes AGV avec formulaires dynamiques</li>
+        <li>Automatisation <strong>Power Automate</strong> : génération PDF et envoi automatique au prestataire</li>
+        <li>Déployée sur <strong>Azure</strong> interne Saint-Gobain avec CI/CD Azure DevOps</li>
+      </ul>
+      <div class="proj-stack">
+        <span class="chip pink">Angular</span><span class="chip pink">C#/.NET</span>
+        <span class="chip cyan">Azure</span>
+        <span class="chip orange">PowerApps</span><span class="chip orange">Power Automate</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+  <div class="contact-box reveal">
+    <h2 class="contact-title">Travaillons ensemble <span style="color:var(--purple)">.</span></h2>
+    <p class="contact-sub">Disponible en CDI · Novembre 2026 · Paris & Remote</p>
+    <div class="contact-links">
+      <a href="mailto:bassem.mahjoub13@gmail.com" class="c-link main"><i class="fa-solid fa-envelope"></i> bassem.mahjoub13@gmail.com</a>
+      <a href="https://linkedin.com/in/bessem-mahjoub" target="_blank" class="c-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/bessem-mahjoub" target="_blank" class="c-link"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="container">// © 2026 Bessem Mahjoub · Junior Data Engineer · Paris</div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-4+'px';cursor.style.top=my-4+'px'});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-16+'px';ring.style.top=ry-16+'px';requestAnimationFrame(animRing)}
+animRing();
+
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
