@@ -55,6 +55,13 @@ section{position:relative;z-index:1}
 .sec-label{display:flex;align-items:center;gap:0.75rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--purple);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem}
 .sec-label::before{content:'//';color:var(--text3)}
 .sec-title{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;letter-spacing:-0.025em;line-height:1.15}
+#certifications{padding:4rem 0 2rem}
+.cert-wrap{display:flex;flex-wrap:wrap;gap:1rem}
+.cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:all 0.3s}
+.cert-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.cert-icon{width:36px;height:36px;border-radius:8px;background:rgba(124,111,247,0.12);color:var(--purple2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cert-name{font-size:0.88rem;font-weight:600}
+.cert-issuer{font-size:0.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace}
 #skills{padding:6rem 0}
 .skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
 .skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all 0.3s;position:relative;overflow:hidden}
@@ -67,6 +74,7 @@ section{position:relative;z-index:1}
 .s-ai .sk-icon{background:rgba(244,114,182,0.12);color:var(--pink)}
 .s-gov .sk-icon{background:rgba(74,222,128,0.12);color:var(--green)}
 .s-etl .sk-icon{background:rgba(251,191,36,0.12);color:#fbbf24}
+.s-collab .sk-icon{background:rgba(124,111,247,0.08);color:var(--purple)}
 .sk-name{font-weight:600;font-size:0.95rem}
 .sk-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
 .tag{font-size:0.7rem;padding:0.22rem 0.6rem;border-radius:4px;font-weight:500;background:var(--bg4);border:1px solid var(--border);color:var(--text2);font-family:'JetBrains Mono',monospace}
@@ -162,8 +170,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
   <div>
     <div class="hero-mono">// bassem.mahjoub · Paris, France</div>
     <h1 class="hero-name">Bessem<br><span class="accent">Mahjoub.</span></h1>
-    <p class="hero-role">Junior <span>Data Engineer</span> · Profil hybride Data + Cloud + DevOps</p>
-    <p class="hero-desc">Spécialisé Azure Databricks, Microsoft Fabric et Snowflake. Expérience concrète en alternance chez Saint-Gobain sur des pipelines industriels end-to-end — de l'ingestion jusqu'à la visualisation via dashboards Power BI. À l'aise sur toute la stack : ETL/ELT, orchestration, IaC et CI/CD.</p>
+    <p class="hero-role">Junior <span>Data Engineer</span> · Data + Cloud + DevOps</p>
+    <p class="hero-desc">Spécialisé Azure Databricks, Microsoft Fabric et Snowflake. Expérience concrète en alternance chez Saint-Gobain sur des pipelines industriels end-to-end. Multi-cloud (Azure, AWS, GCP) avec expertise Spark, dbt, Airflow et CI/CD.</p>
     <div class="hero-btns">
       <a href="#projects" class="btn-p"><i class="fa-solid fa-rocket"></i> Voir mes projets</a>
       <a href="https://linkedin.com/in/bessem-mahjoub" target="_blank" class="btn-s"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -178,13 +186,13 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="t-line"><span class="prompt">$</span><span class="cmd">cat</span><span class="val"> profile.json</span></div>
       <div class="t-line"><span class="comment">{</span></div>
       <div class="t-line">&nbsp;<span class="key">"role"</span>: <span class="str">"Junior Data Engineer"</span>,</div>
-      <div class="t-line">&nbsp;<span class="key">"location"</span>: <span class="str">"Paris, France"</span>,</div>
-      <div class="t-line">&nbsp;<span class="key">"stack"</span>: [<span class="str">"Azure"</span>, <span class="str">"Databricks"</span>,<span class="str">"Fabric"</span></div>
-      <div class="t-line">&nbsp;&nbsp;&nbsp;<span class="str">"Snowflake"</span>, <span class="str">"dbt"</span>, <span class="str">"Spark"</span>],</div>
       <div class="t-line">&nbsp;<span class="key">"clouds"</span>: [<span class="str">"Azure"</span>, <span class="str">"AWS"</span>, <span class="str">"GCP"</span>],</div>
-      <div class="t-line">&nbsp;<span class="key">"etl_tools"</span>: [<span class="str">"Talend"</span>, <span class="str">"dbt"</span>, <span class="str">"Glue"</span>],</div>
-      <div class="t-line">&nbsp;<span class="key">"languages"</span>: [<span class="str">"Python"</span>, <span class="str">"SQL"</span>, <span class="str">"Scala"</span>],</div>
-      <div class="t-line">&nbsp;<span class="key">"experiences"</span>: <span class="val">4</span>,</div>
+      <div class="t-line">&nbsp;<span class="key">"stack"</span>: [<span class="str">"Databricks"</span>, <span class="str">"Spark"</span>, <span class="str">"dbt"</span>,</div>
+      <div class="t-line">&nbsp;&nbsp;&nbsp;<span class="str">"Snowflake"</span>, <span class="str">"Airflow"</span>, <span class="str">"Kafka"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"gcp"</span>: [<span class="str">"BigQuery"</span>, <span class="str">"Dataflow"</span>, <span class="str">"Pub/Sub"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"etl"</span>: [<span class="str">"Talend"</span>, <span class="str">"Apache Beam"</span>, <span class="str">"Glue"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"certifications"</span>: [<span class="str">"Databricks Fundamentals"</span>],</div>
+      <div class="t-line">&nbsp;<span class="key">"experiences"</span>: <span class="val">4</span></div>
       <div class="t-line"><span class="comment">}</span></div>
       <div class="avail"><div class="avail-dot"></div>available_for_cdi: true // nov 2026</div>
     </div>
@@ -193,6 +201,35 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
 </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-label">Badges & Certifications</div>
+    <h2 class="sec-title">Certifications</h2>
+  </div>
+  <div class="cert-wrap reveal">
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div><div class="cert-name">Databricks Fundamentals</div><div class="cert-issuer">Databricks Academy · 2025</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div><div class="cert-name">dbt Fundamentals</div><div class="cert-issuer">dbt Labs · 2025</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div><div class="cert-name">Snowflake Badge</div><div class="cert-issuer">Snowflake University · 2025</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div><div class="cert-name">Google Cloud Skills Boost</div><div class="cert-issuer">Google Cloud · 2025</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
 <section id="skills">
 <div class="container">
   <div class="sec-header reveal">
@@ -202,32 +239,33 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
   <div class="skills-wrap">
     <div class="skill-card s-data reveal reveal-d1">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-database"></i></div><div class="sk-name">Data Engineering</div></div>
-      <div class="sk-tags"><span class="tag">Python</span><span class="tag">PySpark</span><span class="tag">Spark</span><span class="tag">SQL</span><span class="tag">dbt</span><span class="tag">Snowflake</span><span class="tag">Databricks</span><span class="tag">Airflow</span><span class="tag">Kafka</span><span class="tag">Delta Lake</span><span class="tag">MongoDB</span><span class="tag">BigQuery</span><span class="tag">Power BI</span></div>
+      <div class="sk-tags"><span class="tag">Python</span><span class="tag">PySpark</span><span class="tag">Spark</span><span class="tag">SQL</span><span class="tag">Apache Beam</span><span class="tag">dbt</span><span class="tag">Snowflake</span><span class="tag">Databricks</span><span class="tag">Airflow</span><span class="tag">Kafka</span><span class="tag">Pub/Sub</span><span class="tag">Delta Lake</span><span class="tag">MongoDB</span></div>
     </div>
-    <div class="skill-card s-etl reveal reveal-d2">
+    <div class="skill-card s-cloud reveal reveal-d2">
+      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-cloud"></i></div><div class="sk-name">Cloud — Azure · AWS · GCP</div></div>
+      <div class="sk-tags"><span class="tag">Azure Databricks</span><span class="tag">Fabric</span><span class="tag">ADF</span><span class="tag">Synapse</span><span class="tag">AWS S3</span><span class="tag">Glue</span><span class="tag">Redshift</span><span class="tag">Lambda</span><span class="tag">BigQuery</span><span class="tag">Dataflow</span><span class="tag">Cloud Storage</span><span class="tag">Firestore</span><span class="tag">Looker Studio</span></div>
+    </div>
+    <div class="skill-card s-etl reveal reveal-d3">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-arrows-spin"></i></div><div class="sk-name">ETL & Data Visualisation</div></div>
-      <div class="sk-tags"><span class="tag">Talend</span><span class="tag">Talend Admin Center</span><span class="tag">dbt</span><span class="tag">AWS Glue</span><span class="tag">ADF</span><span class="tag">Power BI</span><span class="tag">Looker</span><span class="tag">Flask</span><span class="tag">Data Quality</span><span class="tag">Reporting</span></div>
-    </div>
-    <div class="skill-card s-cloud reveal reveal-d3">
-      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-cloud"></i></div><div class="sk-name">Cloud</div></div>
-      <div class="sk-tags"><span class="tag">Azure ADF</span><span class="tag">Databricks</span><span class="tag">Fabric</span><span class="tag">Synapse</span><span class="tag">DevOps</span><span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">Glue</span><span class="tag">Redshift</span><span class="tag">Step Functions</span><span class="tag">GCP BigQuery</span></div>
+      <div class="sk-tags"><span class="tag">Talend</span><span class="tag">Talend Admin Center</span><span class="tag">AWS Glue</span><span class="tag">Apache Beam</span><span class="tag">Power BI</span><span class="tag">Looker Studio</span><span class="tag">Flask</span><span class="tag">Data Quality</span></div>
     </div>
     <div class="skill-card s-devops reveal reveal-d1">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-gears"></i></div><div class="sk-name">DevOps & CI/CD</div></div>
-      <div class="sk-tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">Linux/Shell</span><span class="tag">Git</span><span class="tag">Agile/Scrum</span></div>
+      <div class="sk-tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span><span class="tag">Git</span><span class="tag">Elasticsearch</span><span class="tag">Kibana</span></div>
     </div>
     <div class="skill-card s-ai reveal reveal-d2">
       <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-brain"></i></div><div class="sk-name">IA & LLM</div></div>
       <div class="sk-tags"><span class="tag">LangChain</span><span class="tag">GraphRAG</span><span class="tag">RAG</span><span class="tag">Neo4j</span><span class="tag">MLflow</span><span class="tag">Copilot Studio</span></div>
     </div>
-    <div class="skill-card s-gov reveal reveal-d3">
-      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="sk-name">Gouvernance & Qualité</div></div>
-      <div class="sk-tags"><span class="tag">Data Contracts</span><span class="tag">Unity Catalog</span><span class="tag">RBAC/RGPD</span><span class="tag">DuckDB</span><span class="tag">OpenTelemetry</span><span class="tag">Architecture Medallion</span></div>
+    <div class="skill-card s-collab reveal reveal-d3">
+      <div class="sk-head"><div class="sk-icon"><i class="fa-solid fa-people-group"></i></div><div class="sk-name">Outils & Gouvernance</div></div>
+      <div class="sk-tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">Agile/Scrum</span><span class="tag">Data Contracts</span><span class="tag">Unity Catalog</span><span class="tag">RBAC/RGPD</span><span class="tag">OpenTelemetry</span><span class="tag">Architecture Medallion</span></div>
     </div>
   </div>
 </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
 <div class="container">
   <div class="sec-header reveal">
@@ -242,17 +280,15 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="exp-co"><i class="fa-solid fa-building"></i> Placoplatre, Saint-Gobain</div>
       <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Vaujours, Île-de-France</div>
       <ul class="bullets">
-        <li>Conception de pipelines <strong>ETL/ELT</strong> (Python, SQL) sur <strong>Azure Databricks</strong> et <strong>Microsoft Fabric</strong> pour la collecte et fiabilisation de données industrielles hétérogènes</li>
-        <li>Implémentation <strong>dbt</strong> avec architecture <strong>Medallion</strong> (Bronze/Silver/Gold) et alimentation <strong>Snowflake</strong> via Microsoft Fabric</li>
-        <li>Orchestration <strong>Airflow</strong> et <strong>Azure Data Factory</strong> pour l'automatisation bout-en-bout des workflows data</li>
-        <li>Conception de <strong>dashboards Power BI</strong> pour la visualisation des KPIs et des mesures de performance du site industriel</li>
-        <li>Développement d'applications <strong>PowerApps</strong> de déclaration de pannes AGV et automatisation via <strong>Power Automate</strong> (génération PDF, envoi automatique)</li>
-        <li>CI/CD <strong>Azure DevOps</strong> / GitHub Actions et monitoring qualité des pipelines en production</li>
+        <li>Conception de pipelines <strong>ETL/ELT</strong> (Python, SQL) sur <strong>Azure Databricks</strong> et <strong>Microsoft Fabric</strong> avec architecture Medallion et alimentation <strong>Snowflake</strong> via dbt</li>
+        <li>Orchestration <strong>Airflow</strong> et <strong>Azure Data Factory</strong> avec CI/CD Azure DevOps / GitHub Actions et monitoring qualité en production</li>
+        <li>Développement d'un chatbot interne (<strong>LangChain, RAG</strong>) avec APIs Flask et collaboration transverse avec les équipes BI (Supply Chain, Achats, Carrières) pour un dashboard <strong>Power BI</strong> générique</li>
+        <li>Applications <strong>PowerApps</strong> et automatisation <strong>Power Automate</strong> (génération PDF, envoi automatique)</li>
       </ul>
       <div class="exp-stack">
         <span class="chip purple">Azure Databricks</span><span class="chip purple">Microsoft Fabric</span><span class="chip purple">dbt</span><span class="chip purple">Snowflake</span>
         <span class="chip cyan">Airflow</span><span class="chip cyan">ADF</span>
-        <span class="chip pink">Power BI</span><span class="chip pink">PowerApps</span>
+        <span class="chip pink">Power BI</span><span class="chip pink">LangChain/RAG</span>
         <span class="chip orange">Power Automate</span><span class="chip green">Azure DevOps</span>
       </div>
     </div>
@@ -263,12 +299,14 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="exp-co"><i class="fa-solid fa-building"></i> C.B.M</div>
       <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Enghien-les-Bains</div>
       <ul class="bullets">
-        <li>Conception et déploiement d'une infrastructure <strong>Data Lake scalable sur AWS S3</strong> avec IaC <strong>Terraform</strong> et traitement distribué <strong>Spark/PySpark</strong></li>
-        <li>Pipeline <strong>CI/CD GitLab CI</strong> pour l'industrialisation et l'automatisation des workflows data sur AWS</li>
-        <li>Orchestration <strong>Docker/Kubernetes</strong> pour le déploiement et la gestion des environnements data en production</li>
+        <li>Infrastructure Data Lake scalable (AWS S3, <strong>Terraform</strong>, <strong>Ansible</strong>) avec CI/CD Jenkins / GitLab CI</li>
+        <li>Orchestration <strong>Docker / Kubernetes</strong> et monitoring <strong>Elasticsearch / Kibana</strong> avec alerting temps réel</li>
+        <li>Gestion de projet Agile avec <strong>Jira</strong> et <strong>Confluence</strong> pour la documentation et le suivi des sprints</li>
       </ul>
       <div class="exp-stack">
-        <span class="chip cyan">AWS S3</span><span class="chip cyan">Terraform</span><span class="chip purple">Spark/PySpark</span><span class="chip green">Docker/K8s</span><span class="chip orange">GitLab CI</span>
+        <span class="chip cyan">AWS S3</span><span class="chip cyan">Terraform</span><span class="chip cyan">Ansible</span>
+        <span class="chip green">Docker/K8s</span><span class="chip orange">Jenkins</span><span class="chip orange">GitLab CI</span>
+        <span class="chip yellow">Elasticsearch</span><span class="chip yellow">Jira</span>
       </div>
     </div>
 
@@ -278,12 +316,11 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="exp-co"><i class="fa-solid fa-building"></i> Accodev</div>
       <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Tunis, Tunisie</div>
       <ul class="bullets">
-        <li>Conception de pipelines <strong>ETL/ELT</strong> (Python, SQL) sur sources hétérogènes (MongoDB, SQL) pour la structuration et fiabilisation de données clients</li>
-        <li>Développement de jobs <strong>PySpark</strong> pour la transformation à grande échelle et l'automatisation des workflows data</li>
-        <li>Industrialisation <strong>CI/CD Azure DevOps</strong> avec monitoring continu des pipelines en production</li>
+        <li>Pipelines ETL/ELT (Python, <strong>PySpark</strong>, SQL) sur sources hétérogènes (<strong>Firestore / MongoDB</strong>, SQL) avec transformation avancée</li>
+        <li>Tests unitaires, revue de code et monitoring qualité en production via CI/CD Azure DevOps</li>
       </ul>
       <div class="exp-stack">
-        <span class="chip purple">Python</span><span class="chip purple">PySpark</span><span class="chip cyan">MongoDB</span><span class="chip cyan">SQL</span><span class="chip orange">Azure DevOps</span>
+        <span class="chip purple">Python</span><span class="chip purple">PySpark</span><span class="chip cyan">MongoDB</span><span class="chip cyan">Firestore</span><span class="chip orange">Azure DevOps</span>
       </div>
     </div>
 
@@ -293,9 +330,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
       <div class="exp-co"><i class="fa-solid fa-building"></i> Harington</div>
       <div class="exp-loc"><i class="fa-solid fa-location-dot"></i> Paris, France</div>
       <ul class="bullets">
-        <li>Conception d'une architecture <strong>microservices Java</strong> (API Gateway, Eureka, Spring Boot) pour une application web <strong>RH interne</strong></li>
-        <li>Développement full-stack : front-end <strong>Angular</strong>, back-end <strong>Spring Boot</strong>, base de données <strong>MongoDB</strong></li>
-        <li>Déploiement <strong>Docker/Kubernetes</strong> et automatisation CI/CD avec <strong>Jenkins</strong></li>
+        <li>Architecture microservices <strong>Java</strong> (Spring Boot, API Gateway) avec APIs REST pour collecte et exposition des données</li>
+        <li>Développement full-stack <strong>Angular</strong>, base de données <strong>MongoDB</strong> et déploiement Docker / Kubernetes / Jenkins en méthode Agile</li>
       </ul>
       <div class="exp-stack">
         <span class="chip green">Angular</span><span class="chip green">Spring Boot</span><span class="chip cyan">MongoDB</span><span class="chip orange">Docker/K8s</span><span class="chip orange">Jenkins</span>
@@ -306,6 +342,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
 </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
 <div class="container">
   <div class="sec-header reveal">
@@ -329,7 +366,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
             <ul class="proj-bullets" style="margin-top:1rem">
               <li>Pipeline <strong>Kafka → Spark Structured Streaming → Delta Lake</strong> (Bronze/Silver/Gold)</li>
               <li>Chatbot <strong>GraphRAG + LangChain + Neo4j</strong> — doc technique + historique pannes</li>
-              <li>Qualité & observabilité : <strong>Data Contracts</strong>, <strong>DuckDB</strong>, <strong>OpenTelemetry</strong></li>
+              <li>Qualité : <strong>Data Contracts</strong>, <strong>DuckDB</strong>, <strong>OpenTelemetry</strong></li>
               <li>Déploiement <strong>Azure</strong> via Docker Compose</li>
             </ul>
           </div>
@@ -346,7 +383,6 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
               <span class="chip purple">Kafka</span><span class="chip purple">Spark</span><span class="chip purple">Delta Lake</span>
               <span class="chip pink">GraphRAG</span><span class="chip pink">LangChain</span><span class="chip pink">Neo4j</span>
               <span class="chip cyan">Azure</span><span class="chip green">Docker</span>
-              <span class="chip orange">DuckDB</span><span class="chip orange">OpenTelemetry</span>
             </div>
           </div>
         </div>
@@ -357,7 +393,32 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
   <div class="proj-year-group reveal">
     <div class="proj-year-label">2024 — 2025</div>
     <div class="proj-cards">
-      <div class="proj-card p2 reveal">
+
+      <div class="proj-card p2">
+        <div class="proj-top">
+          <div class="proj-icon-wrap">🔵</div>
+          <div class="proj-links"><a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+        <div class="proj-title">Streaming Data Platform — GCP</div>
+        <div class="proj-sub">GCP · Apache Beam · BigQuery · Dataflow</div>
+        <ul class="proj-bullets" style="margin-top:0.75rem">
+          <li>Pipeline temps réel <strong>Pub/Sub → Apache Beam / Dataflow → BigQuery</strong></li>
+          <li>Transformation SQL, modélisation analytique et visualisation <strong>Looker Studio</strong></li>
+          <li>CI/CD Jenkins, déploiement <strong>Kubernetes</strong> et monitoring <strong>Elasticsearch / Kibana</strong></li>
+          <li>Gouvernance IAM et sécurité des accès aux données</li>
+        </ul>
+        <div class="proj-arch" style="margin-top:0.75rem">
+          <div><span class="node">Sources</span> <span class="arrow">──►</span> <span class="flow">Pub/Sub</span> <span class="arrow">──►</span> <span class="flow">Beam/Dataflow</span></div>
+          <div><span class="arrow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼</span></div>
+          <div><span class="node">BigQuery</span> <span class="arrow">──►</span> <span class="flow">Looker Studio</span></div>
+        </div>
+        <div class="proj-stack">
+          <span class="chip cyan">Pub/Sub</span><span class="chip cyan">Dataflow</span><span class="chip cyan">BigQuery</span>
+          <span class="chip purple">Apache Beam</span><span class="chip green">Kubernetes</span><span class="chip yellow">Elasticsearch</span>
+        </div>
+      </div>
+
+      <div class="proj-card p3">
         <div class="proj-top">
           <div class="proj-icon-wrap">☁️</div>
           <div class="proj-links"><a href="https://github.com/bessem-mahjoub" target="_blank" class="proj-link"><i class="fa-brands fa-github"></i></a></div>
@@ -365,21 +426,17 @@ footer{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center;fon
         <div class="proj-title">Modern Data Platform — AWS Serverless</div>
         <div class="proj-sub">AWS · Medallion · Terraform · Databricks</div>
         <ul class="proj-bullets" style="margin-top:0.75rem">
-          <li>Ingestion multi-sources (API REST, CSV) vers <strong>Data Lake S3</strong> en architecture Medallion</li>
-          <li>Orchestration event-driven <strong>AWS Lambda + Step Functions</strong></li>
-          <li>Transformation <strong>AWS Glue (PySpark) + Databricks</strong> ; exposition <strong>Athena + Redshift</strong></li>
-          <li>Gouvernance <strong>IAM</strong>, monitoring <strong>CloudWatch</strong> et data quality checks</li>
+          <li>Ingestion multi-sources vers <strong>Data Lake S3</strong> en architecture Medallion</li>
+          <li>Orchestration event-driven <strong>Lambda + Step Functions</strong></li>
+          <li>Transformation <strong>AWS Glue (PySpark) + Databricks</strong> et exposition <strong>Athena + Redshift</strong></li>
+          <li>Gouvernance <strong>IAM</strong> et monitoring <strong>CloudWatch</strong></li>
         </ul>
-        <div class="proj-arch" style="margin-top:0.75rem">
-          <div><span class="node">API / CSV</span> <span class="arrow">──►</span> <span class="flow">S3 Medallion</span> <span class="arrow">──►</span> <span class="flow">Glue+Databricks</span></div>
-          <div><span class="arrow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼</span></div>
-          <div><span class="node">Athena</span> <span class="arrow">+</span> <span class="node">Redshift</span> <span class="arrow">──►</span> <span class="flow">Data Products</span></div>
-        </div>
         <div class="proj-stack">
           <span class="chip cyan">AWS S3</span><span class="chip cyan">Lambda</span><span class="chip cyan">Glue</span><span class="chip cyan">Redshift</span>
           <span class="chip purple">Databricks</span><span class="chip orange">Terraform</span><span class="chip green">CloudWatch</span>
         </div>
       </div>
+
     </div>
   </div>
 
